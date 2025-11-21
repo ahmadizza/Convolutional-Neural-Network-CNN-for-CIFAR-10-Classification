@@ -121,6 +121,3 @@ Evaluasi dilakukan menggunakan:
 ```
 
 ---
-
-
-Cukup bilang saja!
