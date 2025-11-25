@@ -1,115 +1,116 @@
-# 🧠 Convolutional Neural Network (CNN) for CIFAR-10 Classification
+# Convolutional Neural Network (CNN) for CIFAR-10 Classification
 
-*Project UTS Deep Learning*
+*UTS Deep Learning Project*
 
-## 📌 Deskripsi Projek
+## Project Description
 
-Proyek ini bertujuan untuk membangun dan mengevaluasi model **Convolutional Neural Network (CNN)** untuk mengklasifikasikan gambar pada dataset **CIFAR-10**. Selain itu, proyek ini membandingkan performa **Custom CNN** dengan arsitektur **ResNet** serta melakukan **hyperparameter tuning** untuk meningkatkan akurasi.
+This project aims to build and evaluate **Convolutional Neural Network (CNN)** models for classifying images in the **CIFAR-10** dataset. In addition, the project compares the performance of a **Custom CNN** architecture with **ResNet-18**, and applies **hyperparameter tuning** to improve accuracy.
 
-Fokus utama proyek:
+Main objectives of the project:
 
-* Mengklasifikasikan **10 kelas** objek CIFAR-10.
-* Membandingkan performa **Custom CNN vs ResNet-18**.
-* Melakukan **tuning hyperparameter** (learning rate, batch size, optimizer, scheduler).
-* Menganalisis **feature maps** dan **confusion matrix** untuk memahami perilaku model.
+* Classify **10 CIFAR-10 object categories**.
+* Compare the performance of **Custom CNN vs ResNet-18**.
+* Perform **hyperparameter tuning** (learning rate, batch size, optimizer, scheduler).
+* Analyze **feature maps** and **confusion matrix** to understand the model behavior.
 
 ---
 
-## 📂 Dataset: CIFAR-10
+## Dataset: CIFAR-10
 
-Dataset CIFAR-10 berisi **60.000 gambar berwarna 32×32** dengan 10 kelas:
+CIFAR-10 contains **60,000 color images (32×32)** categorized into 10 classes:
 
 `plane, car, bird, cat, deer, dog, frog, horse, ship, truck`
 
-Pembagian data:
+Data splits:
 
-* **45.000** gambar → *training*
-* **5.000** gambar → *validation*
-* **10.000** gambar → *testing*
-* `set_seed(42)` digunakan untuk memastikan *reproducibility*.
+* **45,000** images → training
+* **5,000** images → validation
+* **10,000** images → testing
+* `set_seed(42)` is used for reproducibility.
 
 ---
 
-## 🏗️ Arsitektur Model
+## Model Architectures
 
-### 🔹 Custom CNN
+### Custom CNN
 
-* Kedalaman jaringan: **dangkal** (8 convolutional layers)
+* Network depth: **shallow** (8 convolutional layers)
 * Optimizer: **Adam**
 * Learning Rate: **0.001**
 * Batch Size: **32**
 * Scheduler: **ReduceLROnPlateau**
 
-### 🔹 ResNet (ResNet-18)
+### ResNet (ResNet-18)
 
-* Kedalaman jaringan: **dalam** (18 layer + residual blocks)
+* Network depth: **deep** (18 layers + residual blocks)
 * Optimizer: **SGD**
 * Learning Rate: **0.1**
 * Batch Size: **128**
 * Scheduler: **CosineAnnealingLR**
 
-### 🔎 Perbandingan Kinerja Model
+### Performance Comparison
 
-| Aspek                  | CNN                    | ResNet                                  |
-| ---------------------- | ---------------------- | --------------------------------------- |
-| Akurasi Test           | **87%**                | **94.64%**                              |
-| Kedalaman Jaringan     | Dangkal (8 conv layer) | Dalam (18 layer + residual block)       |
-| Kemampuan Generalisasi | Cukup baik             | Sangat baik                             |
-| Overfitting            | Tidak terlihat         | Tidak signifikan                        |
-| Analisis Feature Map   | Menangkap fitur dasar  | Menangkap fitur kompleks & fokus tinggi |
-| Arsitektur             | Custom ringan          | ResNet dengan skip-connection           |
-
----
-
-## 📈 Hasil & Analisis
-
-### ✔️ Performa Model
-
-* **CNN**: Akurasi test mencapai **87%**
-* **ResNet-18**: Akurasi validasi mencapai **94.64%**
-* Kurva loss & accuracy stabil pada kedua model
-* Jarak train vs validation kecil → **tidak terjadi overfitting**
-
-### ✔️ Pengaruh Hyperparameter Tuning
-
-* Performa meningkat signifikan setelah penyesuaian:
-
-  * Learning rate
-  * Batch size
-  * Optimizer
-  * Learning rate scheduler
-* ResNet sangat diuntungkan oleh **SGD + CosineAnnealingLR**
-
-### ✔️ Analisis Feature Maps
-
-* Kedua model membangun representasi fitur hierarkis.
-* ResNet menghasilkan **fitur lebih tajam, terfokus, dan mendalam** dibandingkan CNN.
-* Confusion matrix membantu mengidentifikasi kelas-kelas yang sering tertukar.
+| Aspect                 | CNN                     | ResNet                                       |
+| ---------------------- | ----------------------- | -------------------------------------------- |
+| Test Accuracy          | **87%**                 | **94.64%**                                   |
+| Network Depth          | Shallow (8 conv layers) | Deep (18 layers + residual blocks)           |
+| Generalization Ability | Good                    | Very strong                                  |
+| Overfitting            | Not observed            | Minimal                                      |
+| Feature Map Analysis   | Captures basic features | Captures complex and highly focused features |
+| Architecture           | Lightweight custom CNN  | ResNet with skip-connections                 |
 
 ---
 
-## 🧪 Evaluasi
+## Results and Analysis
 
-Evaluasi dilakukan menggunakan:
+### Model Performance
 
-* **Accuracy** (train/val/test)
-* **Loss curve**
-* **Confusion matrix**
-* **Visualisasi feature maps**
-* **Perbandingan arsitektur dan generalisasi**
+* **CNN** achieved a test accuracy of **87%**.
+* **ResNet-18** achieved a validation accuracy of **94.64%**.
+* Loss and accuracy curves were stable for both models.
+* Small gaps between training and validation metrics indicate **no overfitting**.
+
+### Hyperparameter Tuning Effects
+
+Performance improved significantly after tuning:
+
+* Learning rate
+* Batch size
+* Optimizer
+* Learning rate scheduler
+
+ResNet benefited greatly from the combination of **SGD + CosineAnnealingLR**.
+
+### Feature Map Analysis
+
+* Both models develop hierarchical feature representations.
+* ResNet produces **sharper and more complex** features compared to the custom CNN.
+* The confusion matrix highlights classes that are most frequently misclassified.
 
 ---
 
-## 📜 Kesimpulan
+## Evaluation
 
-* Baik CNN maupun ResNet mampu mengklasifikasikan CIFAR-10 dengan baik.
-* **ResNet secara konsisten mengungguli CNN** dalam akurasi, generalisasi, dan depth-based learning.
-* Hyperparameter tuning berperan besar dalam peningkatan performa.
-* Feature maps menunjukkan bahwa **ResNet lebih efektif dalam mengekstraksi fitur kompleks** sehingga mencapai akurasi lebih tinggi.
+Evaluation was conducted using:
+
+* Accuracy (train/validation/test)
+* Loss curves
+* Confusion matrix
+* Feature map visualization
+* Architectural and generalization comparison
 
 ---
 
-## 📁 Struktur Repository (opsional, jika ingin ditambahkan)
+## Conclusion
+
+* Both the Custom CNN and ResNet perform well on CIFAR-10 classification.
+* **ResNet consistently outperforms the Custom CNN** in accuracy, depth-based learning, and generalization.
+* Hyperparameter tuning plays a significant role in improving model performance.
+* Feature map analysis shows that **ResNet is more effective in extracting complex features**, contributing to its higher accuracy.
+
+---
+
+## Optional: Repository Structure
 
 ```
 .
@@ -120,4 +121,3 @@ Evaluasi dilakukan menggunakan:
 └── requirements.txt
 ```
 
----
